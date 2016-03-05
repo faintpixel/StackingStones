@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using StackingStones.Screens;
 
 namespace StackingStones
 {
@@ -9,13 +11,21 @@ namespace StackingStones
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager _graphics;
+        public static SpriteBatch SpriteBatch;
+        public static ContentManager ContentManager;
+        public static readonly int WIDTH = 800;
+        public static readonly int HEIGHT = 600;
 
+        private IScreen _currentScreen;
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
+            _graphics.PreferredBackBufferWidth = WIDTH;
+            _graphics.PreferredBackBufferHeight = HEIGHT;
+            _graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
+            ContentManager = Content;
         }
 
         /// <summary>
@@ -26,7 +36,8 @@ namespace StackingStones
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            this.Window.Title = "VNEngine 0.0.1";
+            this.IsMouseVisible = true;
 
             base.Initialize();
         }
@@ -37,10 +48,11 @@ namespace StackingStones
         /// </summary>
         protected override void LoadContent()
         {
+            //Game1.ACTUAL_WIDTH = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _currentScreen = new TestScreen();
         }
 
         /// <summary>
@@ -62,7 +74,7 @@ namespace StackingStones
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _currentScreen.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -73,9 +85,13 @@ namespace StackingStones
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.White); // TO DO - move this to the individual screens
 
-            // TODO: Add your drawing code here
+            SpriteBatch.Begin(SpriteSortMode.Deferred, BlendState.NonPremultiplied);
+
+            _currentScreen.Draw();
+
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }
