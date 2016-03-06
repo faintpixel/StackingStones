@@ -52,7 +52,7 @@ namespace StackingStones
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentScreen = new TestScreen();
+            _currentScreen = new TestScreenText();
         }
 
         /// <summary>
