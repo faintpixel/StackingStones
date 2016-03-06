@@ -25,3 +25,15 @@
 /processorParam:Quality=Best
 /build:blip.wav
 
+#begin Samples/606658_Scarlett-Isle.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Samples/606658_Scarlett-Isle.mp3
+
+#begin Samples/young_female_laugh.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Samples/young_female_laugh.wav
+
