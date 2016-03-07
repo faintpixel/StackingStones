@@ -17,9 +17,11 @@ namespace StackingStones.Screens
         public TestScreenText()
         {
             //string text = "This is how I normally talk, but sometimes I like to talk[speed 1000] slower.[speed 50] tee hee!";
-            string text = "\"Like omg did you see what davidwinters is wearing?\nIt's[speed 50] soooooooooo.........[speed 1500] [speed 100]weird?\"";
+            List<string> girlsText = new List<string>();
+            girlsText.Add("\"Like omg did you see what davidwinters is wearing?\nIt's[speed 30] soooooooooo.........[speed 1500] [speed 50]weird?\"");
+            girlsText.Add("\"Do you think he picked it out himself, or did he lose a bet?\"");
 
-            _textBox = new TextBox(new Vector2(20, 400), "Girl", text, 100);
+            _textBox = new TextBox(new Vector2(20, 400), "Girl", girlsText, 100);
             _background = new Sprite("Samples\\testBackground", new Vector2(0, 0), 0.75f, 0.45f, 1f);
             _character = new Sprite("Samples\\sampleCharacters", new Vector2(0, 100), 0f, 1.75f, 1f);
 

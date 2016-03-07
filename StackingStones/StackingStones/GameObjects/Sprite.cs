@@ -56,6 +56,11 @@ namespace StackingStones.GameObjects
             _effects.Remove(effect);
         }
 
+        public void RemoveAllEffects()
+        {
+            _effects.Clear();
+        }
+
         public void Draw()
         {
             Game1.SpriteBatch.Draw(_animations.Animations[_currentAnimation][_currentAnimationFrame], Position, null, new Color(Color.White, Alpha), 0f, Vector2.Zero, Scale, SpriteEffects.None, _depth);

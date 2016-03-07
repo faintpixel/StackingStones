@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using StackingStones.Effects;
+using StackingStones.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +18,7 @@ namespace StackingStones.GameObjects
         private Sprite _background;
         private Sprite _next;
         private SpriteFont _font;
-        private readonly string _originalText;
+        private string _originalText;
         private string _visibleText;
         private Vector2 _textPosition;
         private bool _drawText;
@@ -27,32 +29,76 @@ namespace StackingStones.GameObjects
         private bool _allTextDisplayed;
         private string _speakerName;
         private Vector2 _speakerNamePosition;
-        SoundEffect _blip;
+        private SoundEffect _blip;
+        private int _currentTextIndex;
+        private List<string> _text;
+        private KeyboardHelper _keyboardHelper;
 
-        public TextBox(Vector2 position, string speakerName, string text, int textSpeed)
+        public event TextBoxEvent Completed;
+
+        public delegate void TextBoxEvent(TextBox sender);
+
+        public TextBox(Vector2 position, string speakerName, List<string> text, int textSpeed)
         {
             _active = false;
             _allTextDisplayed = false;
+            _text = text;
             _font = Game1.ContentManager.Load<SpriteFont>("DefaultFont");
             _blip = Game1.ContentManager.Load<SoundEffect>("blip");
             _background = new Sprite("defaultTextBox", position, 0f, 1f, 0.5f);
             _next = new Sprite("next", new Vector2(position.X + 720, position.Y + 150), 0f, 1f, 1f);
 
-            InitializeCommands(text);
-
-            string regex = "(\\[.*?\\])";
-            _originalText = Regex.Replace(text, regex, "");
+            SetCurrentText(0);
 
             _speakerName = speakerName;
-
-            _visibleText = "";
+            
             _speakerNamePosition = new Vector2(position.X + 20, position.Y + 20);
             if (string.IsNullOrEmpty(speakerName))
                 _textPosition = _speakerNamePosition;
             else
                 _textPosition = new Vector2(position.X + 30, position.Y + 60);
             _textSpeed = textSpeed;
-            _drawText = false;            
+            _drawText = false;
+
+            var keys = new List<Keys>();
+            keys.Add(Keys.Enter);
+            keys.Add(Keys.Space);
+            _keyboardHelper = new KeyboardHelper(keys);
+            _keyboardHelper.KeyReleased += _keyboardHelper_KeyReleased;  
+        }
+
+        private void _keyboardHelper_KeyReleased(KeyboardHelper sender, Keys key)
+        {
+            if(_allTextDisplayed)
+            {
+                if(_currentTextIndex == _text.Count - 1)
+                {
+                    if (Completed != null)
+                        Completed(this);
+                }
+                else
+                {
+                    SetCurrentText(_currentTextIndex + 1);
+                }
+            }
+            else
+            {
+                _visibleText = _originalText;
+            }
+        }
+
+        private void SetCurrentText(int index)
+        {
+            _currentTextIndex = index;
+            _visibleText = "";
+
+            InitializeCommands(_text[index]);
+
+            string regex = "(\\[.*?\\])";
+            _originalText = Regex.Replace(_text[index], regex, "");
+            _allTextDisplayed = false;
+            _next.RemoveAllEffects();
+            _next.Alpha = 0f;
         }
 
         public void Show()
@@ -70,7 +116,7 @@ namespace StackingStones.GameObjects
 
             for(int i = 0; i < text.Length; i++)
             {
-                if(text[i] == '[' && text[i-1] != '\\')
+                if(text[i] == '[' && (i - 1 < 0 || text[i-1] != '\\'))
                 {
                     string fullCommand = text.Substring(i + 1).Split(']')[0];
                     string[] splitCommand = fullCommand.Split(' ');
@@ -97,6 +143,10 @@ namespace StackingStones.GameObjects
                         {
                             _textSpeed = int.Parse(splitCommand[1]);
                             SetTimer();
+                        }
+                        else if(splitCommand[0] == "speaker")
+                        {
+                            _speakerName = splitCommand[1];
                         }
                     }
 
@@ -137,6 +187,7 @@ namespace StackingStones.GameObjects
             {
                 _background.Update(gameTime);
                 _next.Update(gameTime);
+                _keyboardHelper.Update(gameTime);
             }
         }
 
