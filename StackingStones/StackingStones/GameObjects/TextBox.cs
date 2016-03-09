@@ -155,6 +155,11 @@ namespace StackingStones.GameObjects
                             _script.Dialogue[_scriptIndex].TextSpeed = int.Parse(splitCommand[1]);
                             SetTimer();
                         }
+                        else if(splitCommand[0] == "sound")
+                        {
+                            SoundEffect sound = Game1.ContentManager.Load<SoundEffect>(splitCommand[1]);
+                            sound.Play();
+                        }
                     }
 
                     _writtenText += nextCharacter;

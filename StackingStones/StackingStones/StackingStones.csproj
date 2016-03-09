@@ -65,7 +65,6 @@
     <Compile Include="Screens\TestScreenConversation.cs" />
     <Compile Include="Screens\TestScreenEvents.cs" />
     <Compile Include="Screens\TestScreenSpeeds.cs" />
-    <Compile Include="Screens\TestScreenText.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
