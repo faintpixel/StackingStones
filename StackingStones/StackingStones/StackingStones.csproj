@@ -54,7 +54,7 @@
     <Compile Include="GameObjects\SpriteAnimations.cs" />
     <Compile Include="GameObjects\TextBox.cs" />
     <Compile Include="Input\KeyboardHelper.cs" />
-    <Compile Include="Models\Choice.cs" />
+    <Compile Include="GameObjects\Choice.cs" />
     <Compile Include="Models\Dialogue.cs" />
     <Compile Include="Models\Script.cs" />
     <Compile Include="Program.cs" />

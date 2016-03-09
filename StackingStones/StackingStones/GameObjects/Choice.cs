@@ -17,14 +17,17 @@ namespace StackingStones.Models
         public readonly List<string> Choices;
         public int SelectedChoiceIndex;
 
-        //private Timer _textTimer;
-        //private int _writtenTextIndex;
-        //private string _writtenText;
+        private Timer _textTimer;
+        private int _writtenTextIndex;
+        private string _writtenText;
+        private bool _doneWritingChoices;
+
         private Vector2 _promptPosition;
         private List<Vector2> _positions;
         private SpriteFont _font;
         private KeyboardHelper _keyboardHelper;
         private bool _acceptingInput;
+        private int _textSpeed = 50;
 
         public event ChoiceEvent ChoiceSelected;
 
@@ -33,11 +36,12 @@ namespace StackingStones.Models
         public Choice(string prompt, List<string> choices, Vector2 position)
         {
             _acceptingInput = false;
+            _doneWritingChoices = false;
             Choices = choices;
             Prompt = prompt;
             SelectedChoiceIndex = 0;
-            //_writtenText = "";
-            //_writtenTextIndex = 0;
+            _writtenText = "";
+            _writtenTextIndex = 0;
             _promptPosition = new Vector2(position.X + 20, position.Y + 20);
             _font = Game1.ContentManager.Load<SpriteFont>("DefaultFont");
 
@@ -72,8 +76,16 @@ namespace StackingStones.Models
             }
             else
             {
-                if (ChoiceSelected != null)
-                    ChoiceSelected(this);
+                if (_doneWritingChoices)
+                {
+                    if (ChoiceSelected != null)
+                        ChoiceSelected(this);
+                }
+                else
+                {
+                    _doneWritingChoices = true;
+                    _writtenTextIndex = 100;
+                }
             }
         }
 
@@ -86,7 +98,11 @@ namespace StackingStones.Models
                 Color color = Color.White;
                 if (SelectedChoiceIndex == i)
                     color = Color.Yellow;
-                Game1.SpriteBatch.DrawString(_font, Choices[i], _positions[i], color);
+
+                if(_writtenTextIndex == i)
+                    Game1.SpriteBatch.DrawString(_font, _writtenText, _positions[i], color);
+                else if(_writtenTextIndex > i)
+                    Game1.SpriteBatch.DrawString(_font, Choices[i], _positions[i], color);
             }
         }
 
@@ -98,15 +114,44 @@ namespace StackingStones.Models
 
         public void Start()
         {
-            _acceptingInput = false;
-            Timer timer = new Timer(1000);
-            timer.Elapsed += Timer_Elapsed;
-            timer.Enabled = true;
+            if (Choices.Count > 0)
+            {
+                _textTimer = new Timer(_textSpeed);
+                _textTimer.Elapsed += _textTimer_Elapsed;
+                _textTimer.Enabled = true;
+
+                WaitABitForUserInput();
+            }
+        }
+
+        private void _textTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            if (_doneWritingChoices == false)
+            {
+                if (_writtenText != Choices[_writtenTextIndex])
+                    _writtenText += Choices[_writtenTextIndex][_writtenText.Length];
+                else if (_writtenTextIndex + 1 < Choices.Count)
+                {
+                    _writtenText = "";
+                    _writtenTextIndex++;
+                }
+                else
+                    _doneWritingChoices = true;
+            }
         }
 
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _acceptingInput = true;
+        }
+
+        private void WaitABitForUserInput()
+        {
+            // this is just to make sure the user doesn't accidentally select something.
+            _acceptingInput = false;
+            Timer timer = new Timer(100);
+            timer.Elapsed += Timer_Elapsed;
+            timer.Enabled = true;
         }
     }
 }
