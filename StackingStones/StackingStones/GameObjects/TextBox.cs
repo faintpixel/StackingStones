@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StackingStones.Effects;
 using StackingStones.Input;
+using StackingStones.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,153 +16,165 @@ namespace StackingStones.GameObjects
 {
     public class TextBox : IGameObject
     {
+        private bool _active;
+        private State _state;
+
         private Sprite _background;
         private Sprite _next;
         private SpriteFont _font;
-        private string _originalText;
-        private string _visibleText;
+        private SoundEffect _blip;
+
+        private KeyboardHelper _keyboardHelper;
+        private Timer _textTimer;
+
+        private Vector2 _speakerNamePosition;
+        private Vector2 _noSpeakerTextPosition;
+
+        private Script _script;
+        private int _scriptIndex;
+        private string _writtenText;
+        private bool _allTextDisplayed;
+
         private Vector2 _textPosition;
         private bool _drawText;
-        private int _textSpeed;
-        private Dictionary<int, string[]> _commands;
-        private Timer _textTimer;
-        private bool _active;
-        private bool _allTextDisplayed;
-        private string _speakerName;
-        private Vector2 _speakerNamePosition;
-        private SoundEffect _blip;
-        private int _currentTextIndex;
-        private List<string> _text;
-        private KeyboardHelper _keyboardHelper;
+        
 
         public event TextBoxEvent Completed;
 
         public delegate void TextBoxEvent(TextBox sender);
 
-        public TextBox(Vector2 position, string speakerName, List<string> text, int textSpeed)
+        public TextBox(Vector2 position, Script script)
         {
-            _active = false;
-            _allTextDisplayed = false;
-            _text = text;
             _font = Game1.ContentManager.Load<SpriteFont>("DefaultFont");
             _blip = Game1.ContentManager.Load<SoundEffect>("blip");
             _background = new Sprite("defaultTextBox", position, 0f, 1f, 0.5f);
             _next = new Sprite("next", new Vector2(position.X + 720, position.Y + 150), 0f, 1f, 1f);
 
-            SetCurrentText(0);
+            _state = State.ShowingText;
+            _active = false;
 
-            _speakerName = speakerName;
-            
             _speakerNamePosition = new Vector2(position.X + 20, position.Y + 20);
-            if (string.IsNullOrEmpty(speakerName))
-                _textPosition = _speakerNamePosition;
-            else
-                _textPosition = new Vector2(position.X + 30, position.Y + 60);
-            _textSpeed = textSpeed;
+            _noSpeakerTextPosition = new Vector2(position.X + 20, position.Y + 20);
+            _textPosition = new Vector2(position.X + 30, position.Y + 60);
+
+            _script = script;
+
+            SetScriptIndex(0);
+            
             _drawText = false;
 
+            InitializeKeyboardHelper();
+        }
+
+        private void InitializeKeyboardHelper()
+        {
             var keys = new List<Keys>();
             keys.Add(Keys.Enter);
             keys.Add(Keys.Space);
             _keyboardHelper = new KeyboardHelper(keys);
-            _keyboardHelper.KeyReleased += _keyboardHelper_KeyReleased;  
+            _keyboardHelper.KeyPressed += _keyboardHelper_KeyReleased;
         }
 
         private void _keyboardHelper_KeyReleased(KeyboardHelper sender, Keys key)
         {
-            if(_allTextDisplayed)
+            if (_state == State.ShowingText)
+                HandleKeyRelease_TextMode();
+            else
+                HandleKeyRelease_ChoiceMode();
+        }
+
+        private void HandleKeyRelease_TextMode()
+        {
+            if (_allTextDisplayed) // TO DO - need to actually draw the characters one at a time still to get the events firing and all that stuff.
             {
-                if(_currentTextIndex == _text.Count - 1)
+                if(_scriptIndex == _script.Dialogue.Count - 1)
                 {
-                    if (Completed != null)
-                        Completed(this);
+                    // All dialogue is done.
+                    SwitchToChoices();
                 }
                 else
                 {
-                    SetCurrentText(_currentTextIndex + 1);
+                    SetScriptIndex(_scriptIndex + 1);
                 }
             }
             else
             {
-                _visibleText = _originalText;
+                _writtenText = _script.Dialogue[_scriptIndex].Text;
             }
         }
 
-        private void SetCurrentText(int index)
+        private void HandleKeyRelease_ChoiceMode()
         {
-            _currentTextIndex = index;
-            _visibleText = "";
+            Console.WriteLine("done choices");
+            //if (Completed != null)
+            //    Completed(this);
+        }
 
-            InitializeCommands(_text[index]);
-
-            string regex = "(\\[.*?\\])";
-            _originalText = Regex.Replace(_text[index], regex, "");
+        private void SetScriptIndex(int index)
+        {
+            _scriptIndex = index;
+            _writtenText = "";
             _allTextDisplayed = false;
             _next.RemoveAllEffects();
             _next.Alpha = 0f;
+
+            if(index != 0) // kind of a workaround. we don't want it to start the timer until it's actually showing.
+                SetTimer();
         }
 
-        public void Show()
+        public void Show(bool fadeIn = false)
         {
             _active = true;
-            var fade = new Fade(0f, 1f, 1.5f);
-            fade.Completed += TextBoxVisible;
-            _background.Apply(fade);
-        }
-
-        private void InitializeCommands(string text)
-        {
-            _commands = new Dictionary<int, string[]>();
-            int indexModifier = 0;
-
-            for(int i = 0; i < text.Length; i++)
+            if(fadeIn)
             {
-                if(text[i] == '[' && (i - 1 < 0 || text[i-1] != '\\'))
-                {
-                    string fullCommand = text.Substring(i + 1).Split(']')[0];
-                    string[] splitCommand = fullCommand.Split(' ');
-
-                    _commands.Add(i - indexModifier, splitCommand);
-                    indexModifier += fullCommand.Length + 2;
-                }
+                var fade = new Fade(0f, 1f, 1.5f);
+                fade.Completed += TextBoxVisible;
+                _background.Apply(fade);
             }
+            else
+            {
+                _background.Alpha = 1f;
+                TextBoxVisible(null);
+            }            
         }
-
+        
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             if (_allTextDisplayed == false)
             {
-                if (_visibleText != _originalText)
+                if (_writtenText != _script.Dialogue[_scriptIndex].Text)
                 {
-                    int index = _visibleText.Length;
-                    char nextCharacter = _originalText[index];
+                    int index = _writtenText.Length;
+                    char nextCharacter = _script.Dialogue[_scriptIndex].Text[index];
 
-                    if (_commands.ContainsKey(index))
+                    if (_script.Dialogue[_scriptIndex].Commands.ContainsKey(index))
                     {
-                        string[] splitCommand = _commands[index];
+                        string[] splitCommand = _script.Dialogue[_scriptIndex].Commands[index];
                         if (splitCommand[0] == "speed")
                         {
-                            _textSpeed = int.Parse(splitCommand[1]);
+                            _script.Dialogue[_scriptIndex].TextSpeed = int.Parse(splitCommand[1]);
                             SetTimer();
-                        }
-                        else if(splitCommand[0] == "speaker")
-                        {
-                            _speakerName = splitCommand[1];
                         }
                     }
 
-                    _visibleText += nextCharacter;
+                    _writtenText += nextCharacter;
                     //_blip.Play(0.4f, 0, 0);
                 }
                 else
-                    Done();
+                    DoneDialogue();
             }
         }
 
-        private void Done()
+        private void DoneDialogue()
         {
             _allTextDisplayed = true;
             _next.Apply(new Flash(0f, 1f, 1f));
+        }
+
+        private void SwitchToChoices()
+        {
+            _state = State.ShowingChoices;
+            _script.Choice.Start();
         }
 
         private void SetTimer()
@@ -169,7 +182,7 @@ namespace StackingStones.GameObjects
             if (_textTimer != null)
                 _textTimer.Enabled = false;
 
-            _textTimer = new Timer(_textSpeed);
+            _textTimer = new Timer(_script.Dialogue[_scriptIndex].TextSpeed);
             _textTimer.Elapsed += Timer_Elapsed;
             _textTimer.AutoReset = true;
             _textTimer.Enabled = true;
@@ -188,18 +201,38 @@ namespace StackingStones.GameObjects
                 _background.Update(gameTime);
                 _next.Update(gameTime);
                 _keyboardHelper.Update(gameTime);
+                if(_state == State.ShowingChoices)
+                    _script.Choice.Update(gameTime);
             }
         }
 
         public void Draw()
         {
             _background.Draw();
-            Game1.SpriteBatch.DrawString(_font, _speakerName, _speakerNamePosition, new Color(Color.Aqua, _background.Alpha));
+            if(_state == State.ShowingText)
+                Game1.SpriteBatch.DrawString(_font, _script.Dialogue[_scriptIndex].Speaker, _speakerNamePosition, new Color(Color.Aqua, _background.Alpha));
             if (_drawText)
             {
-                Game1.SpriteBatch.DrawString(_font, _visibleText, _textPosition, Color.White);
+                if (_state == State.ShowingText)
+                {
+                    Vector2 position = _textPosition;
+                    if (string.IsNullOrEmpty(_script.Dialogue[_scriptIndex].Speaker))
+                        position = _noSpeakerTextPosition;
+
+                    Game1.SpriteBatch.DrawString(_font, _writtenText, position, _script.Dialogue[_scriptIndex].Color);
+                }
+                else
+                {
+                    _script.Choice.Draw();
+                }
             }
             _next.Draw();
+        }
+
+        private enum State
+        {
+            ShowingText,
+            ShowingChoices
         }
     }
 }

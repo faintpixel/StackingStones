@@ -54,11 +54,15 @@
     <Compile Include="GameObjects\SpriteAnimations.cs" />
     <Compile Include="GameObjects\TextBox.cs" />
     <Compile Include="Input\KeyboardHelper.cs" />
+    <Compile Include="Models\Choice.cs" />
+    <Compile Include="Models\Dialogue.cs" />
+    <Compile Include="Models\Script.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\IScreen.cs" />
     <Compile Include="Screens\SampleScene.cs" />
     <Compile Include="Screens\TestScreen.cs" />
+    <Compile Include="Screens\TestScreenConversation.cs" />
     <Compile Include="Screens\TestScreenEvents.cs" />
     <Compile Include="Screens\TestScreenSpeeds.cs" />
     <Compile Include="Screens\TestScreenText.cs" />
