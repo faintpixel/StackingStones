@@ -72,14 +72,25 @@ namespace StackingStones.GameObjects
             for(int i = _effects.Count - 1; i >= 0; i--)
                 _effects[i].Update(gameTime);
 
-            // advance the animation
-            if (_currentAnimationFrame + 1 >= _animations.Animations[_currentAnimation].Count)
+            if (_timeOfLastFrameChange == TimeSpan.MinValue)
+                _timeOfLastFrameChange = gameTime.ElapsedGameTime.Subtract(new TimeSpan(0, 1, 0));
+
+            TimeSpan timeSinceLastUpdate = gameTime.TotalGameTime - _timeOfLastFrameChange;
+
+            if (timeSinceLastUpdate.TotalMilliseconds > _animations.Speed)
             {
-                if(_animations.Loop)
-                    _currentAnimationFrame = 0;
-            }                
-            else
-                _currentAnimationFrame++;
+                // advance the animation
+                if (_currentAnimationFrame + 1 >= _animations.Animations[_currentAnimation].Count)
+                {
+                    if (_animations.Loop)
+                        _currentAnimationFrame = 0;
+                }
+                else
+                    _currentAnimationFrame++;
+
+                _timeOfLastFrameChange = gameTime.TotalGameTime;
+            }
+
         }
 
         public void SetAnimation(string animationName, int frame = 0)

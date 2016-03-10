@@ -27,7 +27,7 @@ namespace StackingStones.Models
         private SpriteFont _font;
         private KeyboardHelper _keyboardHelper;
         private bool _acceptingInput;
-        private int _textSpeed = 50;
+        private int _textSpeed = 20;
 
         public event ChoiceEvent ChoiceSelected;
 

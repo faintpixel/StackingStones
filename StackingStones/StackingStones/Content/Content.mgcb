@@ -37,3 +37,27 @@
 /processorParam:Quality=Best
 /build:Samples/young_female_laugh.wav
 
+#begin SoundEffects/122261__echobones__angry-squirrel1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/122261__echobones__angry-squirrel1.wav
+
+#begin Music/ugh.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/ugh.mp3
+
+#begin Music/wow.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/wow.mp3
+
+#begin SoundEffects/122261__echobones__angry-squirrel1-edited.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/122261__echobones__angry-squirrel1-edited.wav
+

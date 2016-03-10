@@ -40,8 +40,12 @@ namespace StackingStones.GameObjects
         
 
         public event TextBoxEvent Completed;
+        public event DialogueEvent DialogueLineComplete;
+        public event ScriptEvent ScriptedEventReached;
 
         public delegate void TextBoxEvent(TextBox sender);
+        public delegate void DialogueEvent(TextBox sender, Script script, int scriptIndex);
+        public delegate void ScriptEvent(TextBox sender, string eventId);
 
         public TextBox(Vector2 position, Script script)
         {
@@ -87,13 +91,16 @@ namespace StackingStones.GameObjects
         {
             if (_allTextDisplayed) // TO DO - need to actually draw the characters one at a time still to get the events firing and all that stuff.
             {
-                if(_scriptIndex == _script.Dialogue.Count - 1)
+                if (DialogueLineComplete != null)
+                    DialogueLineComplete(this, _script, _scriptIndex);
+
+                if (_scriptIndex == _script.Dialogue.Count - 1)
                 {
                     // All dialogue is done.
                     SwitchToChoices();
                 }
                 else
-                {
+                {                    
                     SetScriptIndex(_scriptIndex + 1);
                 }
             }
@@ -159,6 +166,11 @@ namespace StackingStones.GameObjects
                         {
                             SoundEffect sound = Game1.ContentManager.Load<SoundEffect>(splitCommand[1]);
                             sound.Play();
+                        }
+                        else if(splitCommand[0] == "event")
+                        {
+                            if (ScriptedEventReached != null)
+                                ScriptedEventReached(this, splitCommand[1]);
                         }
                     }
 

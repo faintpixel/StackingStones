@@ -53,7 +53,7 @@ namespace StackingStones
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             _currentScreen = new SampleScene();
-            //_currentScreen = new TestScreenConversation();
+            //_currentScreen = new TestScreenAnimation();
         }
 
         /// <summary>
