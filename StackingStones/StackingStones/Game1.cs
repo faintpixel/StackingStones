@@ -14,8 +14,8 @@ namespace StackingStones
         private GraphicsDeviceManager _graphics;
         public static SpriteBatch SpriteBatch;
         public static ContentManager ContentManager;
-        public static readonly int WIDTH = 800;
-        public static readonly int HEIGHT = 600;
+        public static readonly int WIDTH = 1280;
+        public static readonly int HEIGHT = 720;
 
         private IScreen _currentScreen;
         public Game1()
@@ -36,7 +36,7 @@ namespace StackingStones
         /// </summary>
         protected override void Initialize()
         {
-            this.Window.Title = "VNEngine 0.0.1";
+            this.Window.Title = "Stacking Stones";
             this.IsMouseVisible = true;
 
             base.Initialize();
@@ -52,7 +52,7 @@ namespace StackingStones
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentScreen = new SampleScene();
+            _currentScreen = new Scene2_House();
             //_currentScreen = new TestScreenAnimation();
         }
 

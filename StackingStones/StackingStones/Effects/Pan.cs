@@ -51,6 +51,7 @@ namespace StackingStones.Effects
 
         private void Finish()
         {
+            _sprite.Position = new Vector2(_endPosition.X, _endPosition.Y);
             _active = false;
             if (Completed != null)
                 Completed(this);

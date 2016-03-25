@@ -39,6 +39,7 @@ namespace StackingStones.Effects
 
         private void Finish()
         {
+            _sprite.Alpha = _endAlpha;
             _active = false;
             if (Completed != null)
                 Completed(this);

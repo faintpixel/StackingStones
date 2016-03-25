@@ -61,3 +61,15 @@
 /processorParam:Quality=Best
 /build:SoundEffects/122261__echobones__angry-squirrel1-edited.wav
 
+#begin Music/449897_Prologos.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/449897_Prologos.mp3
+
+#begin SoundEffects/328729__ivolipa__dog-bark.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/328729__ivolipa__dog-bark.wav
+

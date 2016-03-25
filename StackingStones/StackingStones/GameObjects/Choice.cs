@@ -89,21 +89,26 @@ namespace StackingStones.Models
             }
         }
 
-        public void Draw()
+        public void Draw(float alpha)
         {
-            Game1.SpriteBatch.DrawString(_font, Prompt, _promptPosition, Color.Green);
+            Game1.SpriteBatch.DrawString(_font, Prompt, _promptPosition, new Color(Color.Green, alpha));
 
             for(int i = 0; i < Choices.Count; i++)
             {
-                Color color = Color.White;
+                Color color = new Color(Color.White, alpha);
                 if (SelectedChoiceIndex == i)
-                    color = Color.Yellow;
+                    color = new Color(Color.Yellow, alpha);
 
                 if(_writtenTextIndex == i)
                     Game1.SpriteBatch.DrawString(_font, _writtenText, _positions[i], color);
                 else if(_writtenTextIndex > i)
                     Game1.SpriteBatch.DrawString(_font, Choices[i], _positions[i], color);
             }
+        }
+
+        public void Draw()
+        {
+            Draw(1f);
         }
 
         public void Update(GameTime gameTime)

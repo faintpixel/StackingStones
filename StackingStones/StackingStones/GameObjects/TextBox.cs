@@ -112,9 +112,8 @@ namespace StackingStones.GameObjects
 
         private void HandleKeyRelease_ChoiceMode()
         {
-            Console.WriteLine("done choices");
-            //if (Completed != null)
-            //    Completed(this);
+            if (Completed != null)
+                Completed(this);
         }
 
         private void SetScriptIndex(int index)
@@ -143,6 +142,12 @@ namespace StackingStones.GameObjects
                 _background.Alpha = 1f;
                 TextBoxVisible(null);
             }            
+        }
+
+        public void Hide(float speed)
+        {
+            _active = false;
+            _background.Apply(new Fade(1f, 0f, speed));
         }
         
         private void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -213,9 +218,9 @@ namespace StackingStones.GameObjects
 
         public void Update(GameTime gameTime)
         {
+            _background.Update(gameTime);
             if (_active)
             {
-                _background.Update(gameTime);
                 _next.Update(gameTime);
                 _keyboardHelper.Update(gameTime);
                 if(_state == State.ShowingChoices)
@@ -240,10 +245,11 @@ namespace StackingStones.GameObjects
                 }
                 else
                 {
-                    _script.Choice.Draw();
+                    _script.Choice.Draw(_background.Alpha);
                 }
             }
-            _next.Draw();
+            if(_active)
+                _next.Draw();
         }
 
         private enum State
