@@ -44,9 +44,9 @@ namespace StackingStones.Screens
             _sprites.Add(new Sprite(animations, "idle", new Vector2(150, 250), 1f, 1f, 0.5f));
             _sprites.Add(new Sprite(animations, "idle", new Vector2(250, 250), 1f, 1f, 0.5f));
 
-            _sprites[3].Apply(new Zoom(0f, 1f, 1));
-            _sprites[4].Apply(new Zoom(0f, 1f, 0.1f));
-            _sprites[5].Apply(new Zoom(0f, 1f, 0.05f));
+            _sprites[3].Apply(new Zoom(0f, 1f, Vector2.Zero, 1));
+            _sprites[4].Apply(new Zoom(0f, 1f, Vector2.Zero, 0.1f));
+            _sprites[5].Apply(new Zoom(0f, 1f, Vector2.Zero, 0.05f));
 
             _sprites.Add(new Sprite(animations, "idle", new Vector2(50, 350), 1f, 1f, 0.5f));
             _sprites.Add(new Sprite(animations, "idle", new Vector2(150, 350), 1f, 1f, 0.5f));

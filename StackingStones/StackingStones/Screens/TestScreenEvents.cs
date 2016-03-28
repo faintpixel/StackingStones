@@ -24,7 +24,7 @@ namespace StackingStones.Screens
             simultaneousEffects.Add(new Pan(new Vector2(0, 0), new Vector2(-200, 0), 1));
 
             effects.Add(new SimultaneousEffects(simultaneousEffects));
-            effects.Add(new Zoom(1f, 0.75f, 0.1f));
+            effects.Add(new Zoom(1f, 0.75f, Vector2.Zero, 0.1f));
 
             var effect = new MultiStageEffect(effects);
             effect.Completed += screenFadeInCompleted;

@@ -195,8 +195,16 @@ namespace StackingStones.GameObjects
 
         private void SwitchToChoices()
         {
-            _state = State.ShowingChoices;
-            _script.Choice.Start();
+            if (_script.Choice != null)
+            {
+                _state = State.ShowingChoices;
+                _script.Choice.Start();
+            }
+            else
+            {
+                _drawText = false;
+                HandleKeyRelease_ChoiceMode();
+            }
         }
 
         private void SetTimer()

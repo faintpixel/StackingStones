@@ -18,7 +18,7 @@ namespace StackingStones.Effects
 
         public event EffectEvent Completed;
 
-        public Zoom(float startScale, float endScale, float speed)
+        public Zoom(float startScale, float endScale, Vector2 target, float speed)
         {
 
             // TO DO - option to zoom from the center of the image or the corner? or maybe just do center

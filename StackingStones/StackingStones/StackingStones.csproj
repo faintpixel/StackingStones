@@ -50,12 +50,15 @@
     <Compile Include="Effects\Zoom.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\ScreenInteraction.cs" />
     <Compile Include="GameObjects\Sprite.cs" />
     <Compile Include="GameObjects\SpriteAnimations.cs" />
     <Compile Include="GameObjects\TextBox.cs" />
     <Compile Include="Input\KeyboardHelper.cs" />
     <Compile Include="GameObjects\Choice.cs" />
+    <Compile Include="Input\MouseHelper.cs" />
     <Compile Include="Models\Dialogue.cs" />
+    <Compile Include="Models\HotSpot.cs" />
     <Compile Include="Models\Script.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -170,6 +173,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\puppersNoLeash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\regularCursor.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\searchCursor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\squirrel.png">

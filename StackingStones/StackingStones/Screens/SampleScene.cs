@@ -144,7 +144,7 @@ namespace StackingStones.Screens
             {
                 _girls.SetAnimation("blushing");
                 List<IEffect> effects = new List<IEffect>();
-                effects.Add(new Zoom(0f, 1f, 0.5f));
+                effects.Add(new Zoom(0f, 1f, Vector2.Zero, 0.5f));
                 effects.Add(new Fade(0f, 1f, 0.2f));
                 effects.Add(new Pan(_hearts.Position, new Vector2(150, 50), 0.5f));
                 

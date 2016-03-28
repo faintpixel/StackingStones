@@ -37,7 +37,7 @@ namespace StackingStones
         protected override void Initialize()
         {
             this.Window.Title = "Stacking Stones";
-            this.IsMouseVisible = true;
+            this.IsMouseVisible = false;
 
             base.Initialize();
         }

@@ -17,6 +17,9 @@ namespace StackingStones.Screens
         private Sprite _houseInterior;
         private Sprite _lady;
         private Sprite _puppers;
+        private ScreenInteraction _findTheLeash;
+        private bool _foundLeash;
+        private HotSpot _door;
 
         public Scene2_House()
         {
@@ -30,7 +33,7 @@ namespace StackingStones.Screens
 
             var effects = new List<IEffect>();
             effects.Add(new Fade(0f, 1f, 0.6f));
-            effects.Add(new Pan(new Vector2(0, 0), new Vector2(-1280, 0), 5.5f)); // TO DO - reset speed to 0.5
+            effects.Add(new Pan(new Vector2(0, 0), new Vector2(-1280, 0), 0.5f)); // TO DO - reset speed to 0.5
             var effect = new MultiStageEffect(effects);
             effect.Completed += ExteriorPanCompleted;
             
@@ -40,10 +43,7 @@ namespace StackingStones.Screens
             script.Dialogue.Add(new Dialogue("", "My family settled this land years ago.", Color.Green));
             script.Dialogue.Add(new Dialogue("", "It's just me and [sound SoundEffects\\328729__ivolipa__dog-bark]Puppers now.", Color.Green));
 
-            // fade out exterior and fade in interior
-            // fade in old lady
             script.Dialogue.Add(new Dialogue("Old Lady", "[event enterHouse]Alright Puppers, I hear you. Time for your walk is it?", Color.White));
-            // fade in puppers
             script.Dialogue.Add(new Dialogue("Puppers", "[event showPuppers]*[sound SoundEffects\\328729__ivolipa__dog-bark]Bark bark!*", Color.White));
             script.Dialogue.Add(new Dialogue("Old Lady", "*Chuckles*\nWell, I suppose it's a beautiful day for it.\nNow where did I put that darn leash?", Color.White));
 
@@ -57,6 +57,114 @@ namespace StackingStones.Screens
 
             _lady = new Sprite("Sprites\\lady", new Vector2(0, 0), 0f, 1f, 0.5f);
             _puppers = new Sprite("Sprites\\puppersNoLeash", new Vector2(800, 0), 0f, 1f, 0.5f);
+
+
+            InitializeFindTheLeash();
+        }
+
+        private void InitializeFindTheLeash()
+        {
+            _foundLeash = false;
+            List<HotSpot> hotSpots = new List<HotSpot>();
+
+            var oldPhoto = new HotSpot(new Rectangle(273, 263, 115, 60), "Old photo");
+            oldPhoto.Clicked += OldPhoto_Clicked;
+            hotSpots.Add(oldPhoto);
+
+            _door = new HotSpot(new Rectangle(968, 133, 279, 428), "Door");
+            _door.Clicked += Door_Clicked;
+            hotSpots.Add(_door);
+
+            var window = new HotSpot(new Rectangle(521, 178, 174, 175), "Window");
+            window.Clicked += Window_Clicked;
+            hotSpots.Add(window);
+
+            var cupboard = new HotSpot(new Rectangle(289, 363, 121, 104), "Cupboard");
+            cupboard.Clicked += Cupboard_Clicked;
+            hotSpots.Add(cupboard);
+            _findTheLeash = new ScreenInteraction(false, hotSpots);
+        }
+
+        private void Cupboard_Clicked(HotSpot sender)
+        {
+            List<string> messages = new List<string>();
+            messages.Add("Hmm what's in here...\nAh, found the leash!");
+            messages.Add("Now we can go for our walk, Puppers.");
+            ShowMessageForLeashMinigame(messages);
+            _door.HasBeenClicked = false;
+
+            _foundLeash = true;
+        }
+
+        private void Window_Clicked(HotSpot sender)
+        {
+            ShowMessageForLeashMinigame("Warm and sunny. Just the way Puppers likes it!");
+        }
+
+        private void Door_Clicked(HotSpot sender)
+        {
+            if(_foundLeash)
+            {
+                FinishedLeashMinigame();
+            }
+            else
+                ShowMessageForLeashMinigame("Wait, I still haven't found that darn leash."); // TO DO - add whining dog sound
+        }
+
+        private void OldPhoto_Clicked(HotSpot sender)
+        {
+            ShowMessageForLeashMinigame("Mom and dad. I miss them every day.");
+        }
+
+        private void ShowMessageForLeashMinigame(string message)
+        {
+            List<string> messages = new List<string>();
+            messages.Add(message);
+            ShowMessageForLeashMinigame(messages);
+        }
+
+        private void ShowMessageForLeashMinigame(List<string> messages)
+        {
+            var script = new Script();
+            script.Dialogue = new List<Dialogue>();
+            foreach(var message in messages)
+                script.Dialogue.Add(new Dialogue("", message, Color.Green));
+
+            _findTheLeash.Active = false;
+            _textBox = new TextBox(new Vector2(240, 500), script);
+            _textBox.Completed += findTheLeashMessageCompleted;
+            _textBox.Show(true);
+        }
+
+        private void FinishedLeashMinigame()
+        {
+            var script = new Script();
+            script.Dialogue = new List<Dialogue>();
+            script.Dialogue.Add(new Dialogue("Old Lady", "Here we go![sound SoundEffects\\328729__ivolipa__dog-bark] You better behave this time Puppers. No chasing squirrels today!", Color.White));
+
+            _findTheLeash.Active = false;
+            _textBox = new TextBox(new Vector2(240, 500), script);
+            _textBox.Completed += findTheLeashGameCompleted;
+            _textBox.Show(true);
+        }
+
+        private void findTheLeashGameCompleted(TextBox sender)
+        {
+            _textBox.Hide(1f);
+            List<IEffect> effects = new List<IEffect>();
+            effects.Add(new Fade(1f, 0f, 0.5f));
+            effects.Add(new Zoom(1f, 2f, Vector2.Zero, 0.5f));
+            //effects.Add(new Pan(new Vector2(0, 0), new Vector2(-9000, 0), 0.5f));
+
+            SimultaneousEffects effect = new SimultaneousEffects(effects);
+            
+            _houseInterior.Apply(effect);
+        }
+
+        private void findTheLeashMessageCompleted(TextBox sender)
+        {
+            _textBox.Hide(1f);
+            _findTheLeash.Active = true;
         }
 
         private void StartLookingForLeash(TextBox sender)
@@ -64,6 +172,7 @@ namespace StackingStones.Screens
             _lady.Apply(new Fade(1f, 0f, 0.75f));
             _puppers.Apply(new Fade(1f, 0f, 0.75f));
             _textBox.Hide(1f);
+            _findTheLeash.Active = true;
         }
 
         private void _textBox_ScriptedEventReached(TextBox sender, string eventId)
@@ -93,6 +202,8 @@ namespace StackingStones.Screens
             _lady.Draw();
             _puppers.Draw();
 
+            _findTheLeash.Draw();
+
             _textBox.Draw();
         }
 
@@ -103,6 +214,7 @@ namespace StackingStones.Screens
             _textBox.Update(gameTime);
             _lady.Update(gameTime);
             _puppers.Update(gameTime);
+            _findTheLeash.Update(gameTime);
         }
     }
 }
