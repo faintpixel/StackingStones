@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using StackingStones.Screens;
+using System;
 
 namespace StackingStones
 {
@@ -52,8 +53,25 @@ namespace StackingStones
             // Create a new SpriteBatch, which can be used to draw textures.
             SpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _currentScreen = new Scene2_House();
-            //_currentScreen = new TestScreenAnimation();
+
+            var scene = new Scene2_House();
+            scene.Completed += Scene2_House_Completed;
+            _currentScreen = scene;
+
+            Scene2_House_Completed(null);
+            //_currentScreen = new TestScreenZoomToLocation();
+        }
+
+        private void Scene2_House_Completed(IScreen sender)
+        {
+            var scene = new Scene3_WalkingDog();
+            scene.Completed += Scene3_WalkingDog_Completed;
+            _currentScreen = scene;
+        }
+
+        private void Scene3_WalkingDog_Completed(IScreen sender)
+        {
+            Console.WriteLine("Not implemented.");
         }
 
         /// <summary>

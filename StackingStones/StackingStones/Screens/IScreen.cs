@@ -10,5 +10,9 @@ namespace StackingStones.Screens
     {
         void Update(GameTime gameTime);
         void Draw();
+
+        event ScreenEvent Completed;
     }
+
+    public delegate void ScreenEvent(IScreen sender);
 }

@@ -18,6 +18,8 @@ namespace StackingStones.Screens
         private Sprite _girls;
         private Sprite _hearts;
 
+        public event ScreenEvent Completed;
+
         public SampleScene()
         {
             Song backgroundMusic = Game1.ContentManager.Load<Song>("Music\\wow");

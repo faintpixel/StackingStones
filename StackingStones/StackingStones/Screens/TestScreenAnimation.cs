@@ -13,6 +13,8 @@ namespace StackingStones.Screens
     {
         private Sprite _girls;
 
+        public event ScreenEvent Completed;
+
         public TestScreenAnimation()
         {
             var animations = new Dictionary<string, List<string>>();

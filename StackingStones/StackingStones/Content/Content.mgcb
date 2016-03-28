@@ -73,3 +73,9 @@
 /processorParam:Quality=Best
 /build:SoundEffects/328729__ivolipa__dog-bark.wav
 
+#begin Music/506950_wandschrank---Waldigkeit.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/506950_wandschrank---Waldigkeit.mp3
+

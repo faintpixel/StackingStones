@@ -12,6 +12,8 @@ namespace StackingStones.Screens
     {
         private List<Sprite> _sprites;
 
+        public event ScreenEvent Completed;
+
         public TestScreenEvents()
         {
             _sprites = new List<Sprite>();

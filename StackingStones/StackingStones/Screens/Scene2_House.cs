@@ -21,12 +21,11 @@ namespace StackingStones.Screens
         private bool _foundLeash;
         private HotSpot _door;
 
+        public event ScreenEvent Completed;
+
         public Scene2_House()
         {
-            Song backgroundMusic = Game1.ContentManager.Load<Song>("Music\\449897_Prologos");
-            MediaPlayer.Play(backgroundMusic);
-            MediaPlayer.IsRepeating = false;
-            MediaPlayer.Volume = 0.5f;
+            Music.Play("Music\\449897_Prologos", 0.5f, false);
 
             _houseExteriorPanorama = new Sprite("Backgrounds\\Placeholders\\houseByForest", new Vector2(0, 0), 0f, 1f, 0.5f);
             _houseInterior = new Sprite("Backgrounds\\Placeholders\\houseInterior", new Vector2(0, 0), 0f, 1f, 0.5f);
@@ -150,6 +149,7 @@ namespace StackingStones.Screens
 
         private void findTheLeashGameCompleted(TextBox sender)
         {
+            Music.FadeToVolume(0f, 0.25f);
             _textBox.Hide(1f);
             List<IEffect> effects = new List<IEffect>();
             effects.Add(new Fade(1f, 0f, 0.5f));
@@ -157,8 +157,14 @@ namespace StackingStones.Screens
             //effects.Add(new Pan(new Vector2(0, 0), new Vector2(-9000, 0), 0.5f));
 
             SimultaneousEffects effect = new SimultaneousEffects(effects);
-            
+            effect.Completed += SceneTransitionCompleted;
             _houseInterior.Apply(effect);
+        }
+
+        private void SceneTransitionCompleted(IEffect sender)
+        {
+            if (Completed != null)
+                Completed(this);
         }
 
         private void findTheLeashMessageCompleted(TextBox sender)
@@ -215,6 +221,7 @@ namespace StackingStones.Screens
             _lady.Update(gameTime);
             _puppers.Update(gameTime);
             _findTheLeash.Update(gameTime);
+            Music.Update(gameTime);
         }
     }
 }

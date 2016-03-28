@@ -15,6 +15,8 @@ namespace StackingStones.Screens
         private Sprite _background;
         private Sprite _character;
 
+        public event ScreenEvent Completed;
+
         public TestScreenConversation()
         {
             Script script = new Script();
