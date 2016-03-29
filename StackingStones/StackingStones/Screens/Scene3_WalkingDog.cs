@@ -10,12 +10,11 @@ using StackingStones.Models;
 
 namespace StackingStones.Screens
 {
-    public class Scene3_WalkingDog : IScreen
+    public class Scene3_WalkingDog : ScreenBase, IScreen
     {
         private Sprite _background;
         public ScreenInteraction _explore;
         private Sprite _puppers;
-        private TextBox _textBox;
 
         public event ScreenEvent Completed;
         
@@ -35,11 +34,20 @@ namespace StackingStones.Screens
             effect.Completed += ScreenTransitioned;
             _background.Apply(effect);
 
-            InitializeExploration();
+            base.StartShowingMessage += Scene3_WalkingDog_StartShowingMessage;
+            base.DoneShowingMessage += Scene3_WalkingDog_DoneShowingMessage;
 
-            var script = new Script();
-            script.Dialogue.Add(new Dialogue("", "", Color.Green));
-            _textBox = new TextBox(new Vector2(240, 500), script);
+            InitializeExploration();
+        }
+
+        private void Scene3_WalkingDog_DoneShowingMessage(object sender, EventArgs e)
+        {
+            _explore.Active = true;
+        }
+
+        private void Scene3_WalkingDog_StartShowingMessage(object sender, EventArgs e)
+        {
+            _explore.Active = false;
         }
 
         private void ScreenTransitioned(IEffect sender)
@@ -85,7 +93,7 @@ namespace StackingStones.Screens
 
             _explore.Active = false;
             _textBox = new TextBox(new Vector2(240, 500), script);
-            _textBox.ScriptedEventReached += _textBox_ScriptedEventReached;
+            _textBox.ScriptedEventReached += Message_ScriptedEventReached;
             _textBox.Show(true);
         }
 
@@ -134,49 +142,10 @@ namespace StackingStones.Screens
             ShowMessage(dialogue);
         }
 
-        private void _textBox_ScriptedEventReached(TextBox sender, string eventId)
+        protected override void Message_ScriptedEventReached(TextBox sender, string eventId)
         {
             if (eventId == "hidePuppers")
                 _puppers.Apply(new Fade(1f, 0f, 1f));
-        }
-
-        private void ShowMessage(string message)
-        {
-            List<string> messages = new List<string>();
-            messages.Add(message);
-            ShowMessage(messages);
-        }
-
-        private void ShowMessage(List<string> messages)
-        {
-            var script = new Script();
-            script.Dialogue = new List<Dialogue>();
-            foreach (var message in messages)
-                script.Dialogue.Add(new Dialogue("", message, Color.Green));
-
-            _explore.Active = false;
-            _textBox = new TextBox(new Vector2(240, 500), script);
-            _textBox.ScriptedEventReached += _textBox_ScriptedEventReached;
-            _textBox.Completed += MessageCompleted;
-            _textBox.Show(true);
-        }
-        
-        private void ShowMessage(List<Dialogue> dialogue)
-        {
-            var script = new Script();
-            script.Dialogue = dialogue;
-
-            _explore.Active = false;
-            _textBox = new TextBox(new Vector2(240, 500), script);
-            _textBox.Completed += MessageCompleted;
-            _textBox.ScriptedEventReached += _textBox_ScriptedEventReached;
-            _textBox.Show(true);
-        }
-
-        private void MessageCompleted(TextBox sender)
-        {
-            _textBox.Hide(1f);
-            _explore.Active = true;
         }
 
         public void Draw()

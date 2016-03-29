@@ -71,6 +71,7 @@
     <Compile Include="Screens\SampleScene.cs" />
     <Compile Include="Screens\Scene2_House.cs" />
     <Compile Include="Screens\Scene3_WalkingDog.cs" />
+    <Compile Include="Screens\ScreenBase.cs" />
     <Compile Include="Screens\TestScreen.cs" />
     <Compile Include="Screens\TestScreenAnimation.cs" />
     <Compile Include="Screens\TestScreenConversation.cs" />

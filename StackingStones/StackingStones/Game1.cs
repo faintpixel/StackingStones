@@ -58,7 +58,7 @@ namespace StackingStones
             scene.Completed += Scene2_House_Completed;
             _currentScreen = scene;
 
-            //Scene2_House_Completed(null);
+            Scene2_House_Completed(null);
             //_currentScreen = new TestScreenZoomToLocation();
         }
 
