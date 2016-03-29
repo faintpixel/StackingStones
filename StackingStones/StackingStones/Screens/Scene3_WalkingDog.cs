@@ -122,7 +122,7 @@ namespace StackingStones.Screens
 
         private void Trees_Clicked(HotSpot sender)
         {
-            ShowMessage("You'd think I'd be sick of these trees after having lived here so long, but I get excited for each walk.\nYou never know what you'll see!");
+            ShowMessage("You'd think I'd be sick of these trees after having lived here so long, but I get excited\nfor each walk. You never know what you'll see!");
         }
 
         private void Puppers_Clicked(HotSpot sender)

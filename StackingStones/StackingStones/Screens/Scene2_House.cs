@@ -17,6 +17,8 @@ namespace StackingStones.Screens
         private Sprite _houseInterior;
         private Sprite _lady;
         private Sprite _puppers;
+        private Sprite _leash;
+        private Sprite _oldPhoto;
         private ScreenInteraction _findTheLeash;
         private bool _foundLeash;
         private HotSpot _door;
@@ -29,6 +31,9 @@ namespace StackingStones.Screens
 
             _houseExteriorPanorama = new Sprite("Backgrounds\\Placeholders\\houseByForest", new Vector2(0, 0), 0f, 1f, 0.5f);
             _houseInterior = new Sprite("Backgrounds\\Placeholders\\houseInterior", new Vector2(0, 0), 0f, 1f, 0.5f);
+
+            _oldPhoto = new Sprite("Sprites\\oldPhoto", new Vector2(100, 10), 0f, 1f, 0.5f);
+            _leash = new Sprite("Sprites\\leash", new Vector2(100, 10), 0f, 1f, 0.5f);
 
             var effects = new List<IEffect>();
             effects.Add(new Fade(0f, 1f, 0.6f));
@@ -86,6 +91,7 @@ namespace StackingStones.Screens
 
         private void Cupboard_Clicked(HotSpot sender)
         {
+            _leash.Apply(new Fade(0f, 1f, 0.25f));
             List<string> messages = new List<string>();
             messages.Add("Hmm what's in here...\nAh, found the leash!");
             messages.Add("Now we can go for our walk, Puppers.");
@@ -112,6 +118,7 @@ namespace StackingStones.Screens
 
         private void OldPhoto_Clicked(HotSpot sender)
         {
+            _oldPhoto.Apply(new Fade(0f, 1f, 0.75f));
             ShowMessageForLeashMinigame("Mom and dad. I miss them every day.");
         }
 
@@ -154,7 +161,7 @@ namespace StackingStones.Screens
             List<IEffect> effects = new List<IEffect>();
             effects.Add(new Fade(1f, 0f, 0.5f));
             effects.Add(new Zoom(1f, 2f, Vector2.Zero, 0.5f));
-            //effects.Add(new Pan(new Vector2(0, 0), new Vector2(-9000, 0), 0.5f));
+            effects.Add(new Pan(new Vector2(0, 0), new Vector2(-1300, 0), 4.5f));
 
             SimultaneousEffects effect = new SimultaneousEffects(effects);
             effect.Completed += SceneTransitionCompleted;
@@ -171,6 +178,12 @@ namespace StackingStones.Screens
         {
             _textBox.Hide(1f);
             _findTheLeash.Active = true;
+
+            if (_oldPhoto.Alpha != 0)
+                _oldPhoto.Apply(new Fade(1f, 0f, 1f));
+
+            if (_leash.Alpha != 0)
+                _leash.Apply(new Fade(1f, 0f, 1f));
         }
 
         private void StartLookingForLeash(TextBox sender)
@@ -187,7 +200,7 @@ namespace StackingStones.Screens
             {
                 _houseExteriorPanorama.Apply(new Fade(1f, 0f, 0.5f));
                 _houseInterior.Apply(new Fade(0f, 1f, 0.5f));
-                _lady.Apply(new Fade(0f, 1f, 0.3f));
+                _lady.Apply(new Fade(0f, 1f, 0.75f));
             }
             else if(eventId == "showPuppers")
             {
@@ -207,6 +220,8 @@ namespace StackingStones.Screens
             
             _lady.Draw();
             _puppers.Draw();
+            _oldPhoto.Draw();
+            _leash.Draw();
 
             _findTheLeash.Draw();
 
@@ -220,6 +235,8 @@ namespace StackingStones.Screens
             _textBox.Update(gameTime);
             _lady.Update(gameTime);
             _puppers.Update(gameTime);
+            _oldPhoto.Update(gameTime);
+            _leash.Update(gameTime);
             _findTheLeash.Update(gameTime);
             Music.Update(gameTime);
         }
