@@ -19,7 +19,7 @@ namespace StackingStones.Screens
         public ScreenBase()
         {
             var script = new Script();
-            script.Dialogue.Add(new Dialogue("", "", Color.Green));
+            script.Dialogue.Add(new Dialogue("", "", Color.Black));
             _textBox = new TextBox(new Vector2(240, 500), script);
         }
 
@@ -38,7 +38,7 @@ namespace StackingStones.Screens
             var script = new Script();
             script.Dialogue = new List<Dialogue>();
             foreach (var message in messages)
-                script.Dialogue.Add(new Dialogue("", message, Color.Green));
+                script.Dialogue.Add(new Dialogue("", message, Color.Black));
 
             _textBox = new TextBox(new Vector2(240, 500), script);
             _textBox.ScriptedEventReached += Message_ScriptedEventReached;

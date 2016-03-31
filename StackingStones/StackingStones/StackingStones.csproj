@@ -71,6 +71,8 @@
     <Compile Include="Screens\SampleScene.cs" />
     <Compile Include="Screens\Scene2_House.cs" />
     <Compile Include="Screens\Scene3_WalkingDog.cs" />
+    <Compile Include="Screens\Scene4_WalkingInWoods.cs" />
+    <Compile Include="Screens\Scene5b_HiddenAnimalsMiniGame.cs" />
     <Compile Include="Screens\ScreenBase.cs" />
     <Compile Include="Screens\TestScreen.cs" />
     <Compile Include="Screens\TestScreenAnimation.cs" />
@@ -88,6 +90,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Backgrounds\hiddenAnimals.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Backgrounds\hill.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -98,6 +103,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Placeholders\houseInterior.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\Placeholders\walkingInWoods.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\blip.wav">
@@ -185,6 +193,9 @@
     <Content Include="Content\SoundEffects\328729__ivolipa__dog-bark.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sprites\bird.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sprites\lady.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -204,6 +215,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\squirrel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\squirrel2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

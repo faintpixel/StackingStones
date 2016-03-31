@@ -19,6 +19,8 @@ namespace StackingStones
         public static readonly int HEIGHT = 720;
 
         private IScreen _currentScreen;
+        private IScreen _savedScreen;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -59,6 +61,8 @@ namespace StackingStones
             _currentScreen = scene;
 
             Scene2_House_Completed(null);
+            Scene3_WalkingDog_Completed(null);
+            //Scene_StartHiddenAnimalsMiniGame(null);
             //_currentScreen = new TestScreenZoomToLocation();
         }
 
@@ -71,7 +75,29 @@ namespace StackingStones
 
         private void Scene3_WalkingDog_Completed(IScreen sender)
         {
-            Console.WriteLine("Not implemented.");
+            var scene = new Scene4_WalkingInWoods();
+            scene.Completed += Scene4_WalkingInWoods_Completed;
+            scene.StartHiddenAnimalsMiniGame += Scene_StartHiddenAnimalsMiniGame;
+            _currentScreen = scene;
+        }
+
+        private void Scene_StartHiddenAnimalsMiniGame(IScreen sender)
+        {
+            var scene = new Scene5b_HiddenAnimalsMiniGame();
+            scene.Completed += Scene5b_HiddenAnimals_Completed;
+            _savedScreen = _currentScreen;
+
+            _currentScreen = scene;
+        }
+
+        private void Scene5b_HiddenAnimals_Completed(IScreen sender)
+        {
+            _currentScreen = _savedScreen;
+        }
+
+        private void Scene4_WalkingInWoods_Completed(IScreen sender)
+        {
+            Console.WriteLine("not implemented yet.");
         }
 
         /// <summary>

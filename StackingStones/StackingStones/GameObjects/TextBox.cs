@@ -57,8 +57,8 @@ namespace StackingStones.GameObjects
             _state = State.ShowingText;
             _active = false;
 
-            _speakerNamePosition = new Vector2(position.X + 20, position.Y + 20);
-            _noSpeakerTextPosition = new Vector2(position.X + 20, position.Y + 20);
+            _speakerNamePosition = new Vector2(position.X + 20, position.Y + 30);
+            _noSpeakerTextPosition = new Vector2(position.X + 20, position.Y + 30);
             _textPosition = new Vector2(position.X + 30, position.Y + 60);
 
             _script = script;
@@ -240,7 +240,7 @@ namespace StackingStones.GameObjects
         {
             _background.Draw();
             if(_state == State.ShowingText)
-                Game1.SpriteBatch.DrawString(_font, _script.Dialogue[_scriptIndex].Speaker, _speakerNamePosition, new Color(Color.Aqua, _background.Alpha));
+                Game1.SpriteBatch.DrawString(_font, _script.Dialogue[_scriptIndex].Speaker, _speakerNamePosition, new Color(Color.Black, _background.Alpha));
             if (_drawText)
             {
                 if (_state == State.ShowingText)
