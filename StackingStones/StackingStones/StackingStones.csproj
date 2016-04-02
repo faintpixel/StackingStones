@@ -62,6 +62,8 @@
     <Compile Include="Input\KeyboardHelper.cs" />
     <Compile Include="GameObjects\Choice.cs" />
     <Compile Include="Input\MouseHelper.cs" />
+    <Compile Include="MiniGames\Squirrel\Critter.cs" />
+    <Compile Include="MiniGames\Squirrel\Path.cs" />
     <Compile Include="Models\Dialogue.cs" />
     <Compile Include="Models\HotSpot.cs" />
     <Compile Include="Models\Script.cs" />
@@ -72,6 +74,7 @@
     <Compile Include="Screens\Scene2_House.cs" />
     <Compile Include="Screens\Scene3_WalkingDog.cs" />
     <Compile Include="Screens\Scene4_WalkingInWoods.cs" />
+    <Compile Include="Screens\Scene5a_SquirrelMiniGame.cs" />
     <Compile Include="Screens\Scene5b_HiddenAnimalsMiniGame.cs" />
     <Compile Include="Screens\ScreenBase.cs" />
     <Compile Include="Screens\TestScreen.cs" />
@@ -112,6 +115,42 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\defaultTextBox.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\counter.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\paw.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\porcupine.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\porcupineRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\skunk.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\skunkRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\squirrel.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\squirrelRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\toad.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\toadRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\Squirrel\tree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\449897_Prologos.mp3">
@@ -191,6 +230,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\SoundEffects\328729__ivolipa__dog-bark.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\SoundEffects\34878__sruddi1__whine1.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\bird.png">

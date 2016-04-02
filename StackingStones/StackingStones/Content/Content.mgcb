@@ -79,3 +79,9 @@
 /processorParam:Quality=Best
 /build:Music/506950_wandschrank---Waldigkeit.mp3
 
+#begin SoundEffects/34878__sruddi1__whine1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/34878__sruddi1__whine1.wav
+

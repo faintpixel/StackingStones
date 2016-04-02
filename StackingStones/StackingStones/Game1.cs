@@ -63,6 +63,8 @@ namespace StackingStones
             Scene2_House_Completed(null);
             Scene3_WalkingDog_Completed(null);
             //Scene_StartHiddenAnimalsMiniGame(null);
+            Scene_StartSquirrelMiniGame(null);
+
             //_currentScreen = new TestScreenZoomToLocation();
         }
 
@@ -78,7 +80,22 @@ namespace StackingStones
             var scene = new Scene4_WalkingInWoods();
             scene.Completed += Scene4_WalkingInWoods_Completed;
             scene.StartHiddenAnimalsMiniGame += Scene_StartHiddenAnimalsMiniGame;
+            scene.StartSquirrelMiniGame += Scene_StartSquirrelMiniGame;
             _currentScreen = scene;
+        }
+
+        private void Scene_StartSquirrelMiniGame(IScreen sender)
+        {
+            var screen = new Scene5a_SquirrelMiniGame();
+            screen.Completed += Scene5a_SquirrelGame_Completed;
+            _savedScreen = _currentScreen;
+            _currentScreen = screen;
+        }
+
+        private void Scene5a_SquirrelGame_Completed(IScreen sender)
+        {
+            // TO DO - mark squirrel game completed
+            _currentScreen = _savedScreen;
         }
 
         private void Scene_StartHiddenAnimalsMiniGame(IScreen sender)

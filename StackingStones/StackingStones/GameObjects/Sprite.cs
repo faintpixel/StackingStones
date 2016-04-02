@@ -93,6 +93,12 @@ namespace StackingStones.GameObjects
 
         }
 
+        public Rectangle GetCollisionRectangle()
+        {
+            Texture2D frame = _animations.Animations[_currentAnimation][_currentAnimationFrame];
+            return new Rectangle((int)Position.X, (int)Position.Y, (int)(frame.Width * Scale), (int)(frame.Height * Scale));
+        }
+
         public void SetAnimation(string animationName, int frame = 0)
         {
             // might need to check if the animation exists before doing this... probably ok though since we're the only ones using it.
