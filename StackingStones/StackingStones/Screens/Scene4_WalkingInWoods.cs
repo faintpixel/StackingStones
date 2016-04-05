@@ -85,7 +85,7 @@ namespace StackingStones.Screens
         private void Squirrel_Clicked(HotSpot sender)
         {
             var dialogue = new List<Dialogue>();
-            dialogue.Add(new Dialogue("Old Lady", "Oh dear, not again!", Color.SaddleBrown));
+            dialogue.Add(new Dialogue("Old Lady", "Oh dear, not again!", Constants.SPEAKER_TEXT_COLOR));
             dialogue.Add(new Dialogue("Old Lady", "Get back here Puppers!", Color.SaddleBrown));
             ShowMessage(dialogue);
             this.DoneShowingMessage += DoneShowingSquirrelMessage;
@@ -100,9 +100,9 @@ namespace StackingStones.Screens
         private void Bird_Clicked(HotSpot sender)
         {
             var dialogue = new List<Dialogue>();
-            dialogue.Add(new Dialogue("Old Lady", "Oh look Puppers, it's a song bird!", Color.SaddleBrown));
-            dialogue.Add(new Dialogue("Puppers", "*[sound SoundEffects\\328729__ivolipa__dog-bark]Woof woof!*", Color.SaddleBrown));
-            dialogue.Add(new Dialogue("Old Lady", "Hm? Do you see something else boy?", Color.SaddleBrown));
+            dialogue.Add(new Dialogue("Old Lady", "Oh look Puppers, it's a song bird!", Constants.SPEAKER_TEXT_COLOR));
+            dialogue.Add(new Dialogue("Puppers", "*[sound SoundEffects\\328729__ivolipa__dog-bark]Woof woof!*", Constants.SPEAKER_TEXT_COLOR));
+            dialogue.Add(new Dialogue("Old Lady", "Hm? Do you see something else boy?", Constants.SPEAKER_TEXT_COLOR));
             ShowMessage(dialogue);
             this.DoneShowingMessage += DoneShowingBirdMessage;
         }

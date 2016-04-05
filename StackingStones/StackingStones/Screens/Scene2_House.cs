@@ -35,20 +35,20 @@ namespace StackingStones.Screens
             _leash = new Sprite("Sprites\\leash", new Vector2(100, 10), 0f, 1f, 0.5f);
 
             var effects = new List<IEffect>();
-            effects.Add(new Fade(0f, 1f, 0.6f));
-            effects.Add(new Pan(new Vector2(0, 0), new Vector2(-1280, 0), 10.5f)); // TO DO - reset speed to 0.5
+            effects.Add(new Fade(0f, 1f, 0.45f));
+            effects.Add(new Pan(new Vector2(0, 0), new Vector2(-1280, 0), 0.5f)); // TO DO - reset speed to 0.5
             var effect = new MultiStageEffect(effects);
             effect.Completed += ExteriorPanCompleted;
             
             _houseExteriorPanorama.Apply(effect);
 
             var script = new Script();
-            script.Dialogue.Add(new Dialogue("", "My family settled this land years ago.", Color.Green));
-            script.Dialogue.Add(new Dialogue("", "It's just me and [sound SoundEffects\\328729__ivolipa__dog-bark]Puppers now.", Color.Green));
+            script.Dialogue.Add(new Dialogue("", "My family settled this land years ago.", Constants.NARATOR_TEXT_COLOR));
+            script.Dialogue.Add(new Dialogue("", "It's just me and [sound SoundEffects\\328729__ivolipa__dog-bark]Puppers now.", Constants.NARATOR_TEXT_COLOR));
 
-            script.Dialogue.Add(new Dialogue("Old Lady", "[event enterHouse]Alright Puppers, I hear you. Time for your walk is it?", Color.White));
-            script.Dialogue.Add(new Dialogue("Puppers", "[event showPuppers]*[sound SoundEffects\\328729__ivolipa__dog-bark]Bark bark!*", Color.White));
-            script.Dialogue.Add(new Dialogue("Old Lady", "*Chuckles*\nWell, I suppose it's a beautiful day for it.\nNow where did I put that darn leash?", Color.White));
+            script.Dialogue.Add(new Dialogue("Old Lady", "[event enterHouse]Alright Puppers, I hear you. Time for your walk is it?", Constants.SPEAKER_TEXT_COLOR));
+            script.Dialogue.Add(new Dialogue("Puppers", "[event showPuppers]*[sound SoundEffects\\328729__ivolipa__dog-bark]Bark bark!*", Constants.SPEAKER_TEXT_COLOR));
+            script.Dialogue.Add(new Dialogue("Old Lady", "*Chuckles*\nWell, I suppose it's a beautiful day for it.\nNow where did I put that darn leash?", Constants.SPEAKER_TEXT_COLOR));
 
             List<string> choices = new List<string>();
             choices.Add("Take Puppers for a walk.");
@@ -143,7 +143,7 @@ namespace StackingStones.Screens
         {
             var script = new Script();
             script.Dialogue = new List<Dialogue>();
-            script.Dialogue.Add(new Dialogue("Old Lady", "Here we go![sound SoundEffects\\328729__ivolipa__dog-bark] You better behave this time Puppers. No chasing squirrels today!", Color.White));
+            script.Dialogue.Add(new Dialogue("Old Lady", "Here we go![sound SoundEffects\\328729__ivolipa__dog-bark] You better behave this time Puppers. No chasing squirrels today!", Constants.SPEAKER_TEXT_COLOR));
 
             _findTheLeash.Active = false;
             _textBox = new TextBox(new Vector2(240, 500), script);

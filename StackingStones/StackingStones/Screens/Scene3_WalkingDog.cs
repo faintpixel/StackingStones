@@ -83,7 +83,7 @@ namespace StackingStones.Screens
             var script = new Script();
             script.Dialogue = new List<Dialogue>();
 
-            script.Dialogue.Add(new Dialogue("", "Puppers looks ready to head into the woods.", Color.Green));
+            script.Dialogue.Add(new Dialogue("", "Puppers looks ready to head into the woods.", Constants.NARATOR_TEXT_COLOR));
 
             var choices = new List<string>();
             choices.Add("Yes");
@@ -137,8 +137,8 @@ namespace StackingStones.Screens
         {
             _puppers.Apply(new Fade(0f, 1f, 1f));
             var dialogue = new List<Dialogue>();
-            dialogue.Add(new Dialogue("Puppers", "*[sound SoundEffects\\328729__ivolipa__dog-bark]Woof woof!*", Color.White));
-            dialogue.Add(new Dialogue("", "[event hidePuppers]For all the years he's been chasing squirrels, I don't think he has ever caught one.", Color.Green));
+            dialogue.Add(new Dialogue("Puppers", "*[sound SoundEffects\\328729__ivolipa__dog-bark]Woof woof!*", Constants.SPEAKER_TEXT_COLOR));
+            dialogue.Add(new Dialogue("", "[event hidePuppers]For all the years he's been chasing squirrels, I don't think he has ever caught one.", Constants.NARATOR_TEXT_COLOR));
             ShowMessage(dialogue);
         }
 

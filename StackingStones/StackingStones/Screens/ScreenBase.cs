@@ -38,7 +38,7 @@ namespace StackingStones.Screens
             var script = new Script();
             script.Dialogue = new List<Dialogue>();
             foreach (var message in messages)
-                script.Dialogue.Add(new Dialogue("", message, Color.Black));
+                script.Dialogue.Add(new Dialogue("", message, Constants.NARATOR_TEXT_COLOR));
 
             _textBox = new TextBox(new Vector2(240, 500), script);
             _textBox.ScriptedEventReached += Message_ScriptedEventReached;
