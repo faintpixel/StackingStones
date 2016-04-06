@@ -104,11 +104,14 @@ namespace StackingStones.GameObjects
 
             foreach (HotSpot spot in _hotSpots)
             {
-                if (spot.Location.Contains(x, y))
+                if (spot.Active)
                 {
-                    overHotSpot = true;
-                    _selectedHotSpot = spot;
-                    break;
+                    if (spot.Location.Contains(x, y))
+                    {
+                        overHotSpot = true;
+                        _selectedHotSpot = spot;
+                        break;
+                    }
                 }
             }
 

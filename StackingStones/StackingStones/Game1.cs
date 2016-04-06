@@ -63,8 +63,9 @@ namespace StackingStones
             //Scene2_House_Completed(null);
             //Scene3_WalkingDog_Completed(null);
             //Scene_StartHiddenAnimalsMiniGame(null);
-            Scene_StartSquirrelMiniGame(null);
-           // Scene5a_SquirrelGame_Completed(null);
+            //Scene_StartSquirrelMiniGame(null);
+            //Scene5a_SquirrelGame_Completed(null);
+            Scene6_StackedStones_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
         }
@@ -121,7 +122,14 @@ namespace StackingStones
 
         private void Scene6_StackedStones_Completed(IScreen sender)
         {
-            Console.WriteLine("Not implemented");
+            var scene = new Scene7_WoodMaze();
+            scene.Completed += Scene7_WoodMaze_Completed;
+            _currentScreen = scene;
+        }
+
+        private void Scene7_WoodMaze_Completed(IScreen sender)
+        {
+            Console.WriteLine("Not implemented yet");
         }
 
         /// <summary>

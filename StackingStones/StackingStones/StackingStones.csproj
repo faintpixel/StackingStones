@@ -78,6 +78,7 @@
     <Compile Include="Screens\Scene5a_SquirrelMiniGame.cs" />
     <Compile Include="Screens\Scene5b_HiddenAnimalsMiniGame.cs" />
     <Compile Include="Screens\Scene6_StackedStones.cs" />
+    <Compile Include="Screens\Scene7_WoodMaze.cs" />
     <Compile Include="Screens\ScreenBase.cs" />
     <Compile Include="Screens\TestScreen.cs" />
     <Compile Include="Screens\TestScreenAnimation.cs" />
@@ -114,6 +115,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Placeholders\walkingInWoods.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\Placeholders\woodMaze.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\blip.wav">
@@ -156,6 +160,24 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\MiniGames\Squirrel\tree.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\WoodMaze\bear.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\WoodMaze\leftStones.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\WoodMaze\rightStones.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\WoodMaze\topStones.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\WoodMaze\trash.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\MiniGames\WoodMaze\wolf.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Music\449897_Prologos.mp3">

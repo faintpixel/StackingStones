@@ -11,6 +11,7 @@ namespace StackingStones.Models
         public Rectangle Location;
         public string Name;
         public bool HasBeenClicked;
+        public bool Active;
 
         public event HotSpotEvent Clicked;
 
@@ -19,13 +20,17 @@ namespace StackingStones.Models
             Location = location;
             Name = name;
             HasBeenClicked = false;
+            Active = true;
         }
 
         public void Click()
         {
-            HasBeenClicked = true;
-            if (Clicked != null)
-                Clicked(this);
+            if (Active)
+            {
+                HasBeenClicked = true;
+                if (Clicked != null)
+                    Clicked(this);
+            }
         }
     }
 
