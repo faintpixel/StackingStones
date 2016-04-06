@@ -38,6 +38,8 @@ namespace StackingStones.Screens
 
             this.StartShowingMessage += Scene6_StackedStones_StartShowingMessage;
             this.DoneShowingMessage += Scene6_StackedStones_DoneShowingMessage;
+            Music.Play("Music\\213893_misterious_classical_filmm", 0f, true);
+            Music.FadeToVolume(0.5f, 0.5f);
         }
 
         private void Scene6_StackedStones_DoneShowingMessage(object sender, EventArgs e)

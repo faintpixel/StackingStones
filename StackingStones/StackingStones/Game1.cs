@@ -60,12 +60,12 @@ namespace StackingStones
             scene.Completed += Scene2_House_Completed;
             _currentScreen = scene;
 
-            //Scene2_House_Completed(null);
+            Scene2_House_Completed(null);
             //Scene3_WalkingDog_Completed(null);
             //Scene_StartHiddenAnimalsMiniGame(null);
-            //Scene_StartSquirrelMiniGame(null);
+            Scene_StartSquirrelMiniGame(null);
             //Scene5a_SquirrelGame_Completed(null);
-            Scene6_StackedStones_Completed(null);
+            //Scene6_StackedStones_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
         }

@@ -39,9 +39,11 @@ namespace StackingStones.Screens
             _timesNotFollowedStones = 0;
 
             _background = new Sprite("Backgrounds\\Placeholders\\woodMaze", new Vector2(0, 0), 0f, 1f, 0.5f);
-            _stones.Add(new Sprite("MiniGames\\WoodMaze\\leftStones", new Vector2(87, 360), 1f, 1f, 0.5f));
+            _stones.Add(new Sprite("MiniGames\\WoodMaze\\leftStones", new Vector2(87, 360), 0f, 1f, 0.5f));
             _stones.Add(new Sprite("MiniGames\\WoodMaze\\rightStones", new Vector2(1080, 414), 0f, 1f, 0.5f));
             _stones.Add(new Sprite("MiniGames\\WoodMaze\\topStones", new Vector2(721, 214), 0f, 1f, 0.5f));
+
+            _stones[0].Apply(new Fade(0f, 1f, 0.5f));
 
             _bear = new Sprite("MiniGames\\WoodMaze\\bear", new Vector2(987, 263), 0f, 1f, 0.5f);
             _wolf = new Sprite("MiniGames\\WoodMaze\\wolf", new Vector2(183, 233), 0f, 1f, 0.5f);

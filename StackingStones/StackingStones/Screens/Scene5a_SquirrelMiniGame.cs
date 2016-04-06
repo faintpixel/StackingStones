@@ -232,6 +232,7 @@ namespace StackingStones.Screens
         {
             if (_gameWon)
             {
+                Music.FadeToVolume(0f, 1f);
                 Fade fade = new Fade(1f, 0f, 1f);
                 fade.Completed += ScreenFadeOutDone;
                 _background.Apply(fade);
@@ -301,6 +302,8 @@ namespace StackingStones.Screens
 
             MouseState state = Mouse.GetState();
             _paw.Position = new Vector2(state.X, state.Y);
+
+            Music.Update(gameTime);
         }
     }
 }

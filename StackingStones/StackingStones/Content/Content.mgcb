@@ -85,3 +85,9 @@
 /processorParam:Quality=Best
 /build:SoundEffects/34878__sruddi1__whine1.wav
 
+#begin Music/213893_misterious_classical_filmm.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Music/213893_misterious_classical_filmm.mp3
+
