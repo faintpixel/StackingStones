@@ -30,7 +30,7 @@ namespace StackingStones.Screens
             choices.Add("Awkward silence");
             choices.Add("\"M'lady you have insulted my good friend. Prepare to die.\"");
 
-            script.Choice = new Choice("How will you respond to the girls take on David's fashion?", choices, new Vector2(20, 400));
+            script.Choice = new Choice("How will you respond to the girls take on David's fashion?", choices, Constants.CHOICE_POSITION);
             script.Choice.ChoiceSelected += PlayerRespondsToDavidsFashion;
             _textBox = new TextBox(new Vector2(20, 400), script);
             _background = new Sprite("Samples\\testBackground", new Vector2(0, 0), 0.75f, 0.45f, 1f);
@@ -62,9 +62,9 @@ namespace StackingStones.Screens
             script.Dialogue.Add(new Dialogue("Girl #2", "Agreed.", Color.White));
             script.Dialogue.Add(new Dialogue("Girl", "Have you seen how dreamy that Arto guy is? Wowza.", Color.White));
 
-            script.Choice = new Choice("", new List<string>(), new Vector2(20, 400));
+            script.Choice = new Choice("", new List<string>(), Constants.CHOICE_POSITION);
 
-            _textBox = new TextBox(new Vector2(20, 400), script);
+            _textBox = new TextBox(Constants.TEXTBOX_POSITION, script);
             _textBox.Show();
         }
 

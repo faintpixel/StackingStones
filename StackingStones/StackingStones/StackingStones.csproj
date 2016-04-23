@@ -79,6 +79,7 @@
     <Compile Include="Screens\Scene5b_HiddenAnimalsMiniGame.cs" />
     <Compile Include="Screens\Scene6_StackedStones.cs" />
     <Compile Include="Screens\Scene7_WoodMaze.cs" />
+    <Compile Include="Screens\Scene8_Gully.cs" />
     <Compile Include="Screens\ScreenBase.cs" />
     <Compile Include="Screens\TestScreen.cs" />
     <Compile Include="Screens\TestScreenAnimation.cs" />
@@ -96,10 +97,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Backgrounds\Gully.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Backgrounds\hiddenAnimals.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\hill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\houseExterior.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\houseInterior.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Backgrounds\Placeholders\houseByForest.jpg">
@@ -268,6 +278,9 @@
     <Content Include="Content\Sprites\bird.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Sprites\lady-angry.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sprites\lady.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -290,6 +303,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\squirrel2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\teens.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

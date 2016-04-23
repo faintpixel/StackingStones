@@ -14,5 +14,7 @@ namespace StackingStones
         public static Color SPEAKER_NAME_COLOR = Color.Black;
         public static Color CHOICE_TEXT_COLOR = Color.RosyBrown;
         public static Color SELECTED_CHOICE_TEXT_COLOR = Color.DarkOrange;
+        public static Vector2 TEXTBOX_POSITION = new Vector2(240, 500);
+        public static Vector2 CHOICE_POSITION = new Vector2(240, 500);
     }
 }
