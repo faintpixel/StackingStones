@@ -138,7 +138,7 @@ namespace StackingStones
 
         private void Scene8_Gully_Completed(IScreen sender)
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Not implemented yet");
         }
 
         /// <summary>
