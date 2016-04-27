@@ -23,7 +23,7 @@ namespace StackingStones.Screens
             Music.Play("Music\\506950_wandschrank---Waldigkeit", 0f, true);
             Music.FadeToVolume(0.5f, 0.25f);
 
-            _background = new Sprite("Backgrounds\\Placeholders\\houseExterior", new Vector2(0, 0), 0f, 2f, 0.5f);
+            _background = new Sprite("Backgrounds\\houseExterior", new Vector2(0, 0), 0f, 2f, 0.5f);
             _puppers = new Sprite("Sprites\\puppersNoLeash", new Vector2(800, 0), 0f, 1f, 0.5f);
 
             List<IEffect> effects = new List<IEffect>();
@@ -59,19 +59,19 @@ namespace StackingStones.Screens
         {
             var hotSpots = new List<HotSpot>();
 
-            var puppers = new HotSpot(new Rectangle(706, 466, 159, 134), "Puppers");
+            var puppers = new HotSpot(new Rectangle(588, 474, 122, 129), "Puppers");
             puppers.Clicked += Puppers_Clicked;
             hotSpots.Add(puppers);
 
-            var trees = new HotSpot(new Rectangle(474, 8, 806, 430), "The woods");
+            var trees = new HotSpot(new Rectangle(674, 0, 606, 318), "The woods");
             trees.Clicked += Trees_Clicked;
             hotSpots.Add(trees);
 
-            var cabin = new HotSpot(new Rectangle(0, 0, 297, 531), "Cabin");
+            var cabin = new HotSpot(new Rectangle(0, 0, 618, 363), "Cabin");
             cabin.Clicked += Cabin_Clicked;
             hotSpots.Add(cabin);
 
-            var path = new HotSpot(new Rectangle(904, 438, 114, 116), "Path");
+            var path = new HotSpot(new Rectangle(899, 348, 113, 81), "Path");
             path.Clicked += Path_Clicked;
             hotSpots.Add(path);
 

@@ -29,7 +29,7 @@ namespace StackingStones.Screens
             Music.Play("Music\\449897_Prologos", 0.5f, false);
 
             _houseExteriorPanorama = new Sprite("Backgrounds\\Placeholders\\houseByForest", new Vector2(0, 0), 0f, 1f, 0.5f);
-            _houseInterior = new Sprite("Backgrounds\\Placeholders\\houseInterior", new Vector2(0, 0), 0f, 1f, 0.5f);
+            _houseInterior = new Sprite("Backgrounds\\houseInterior", new Vector2(0, 0), 0f, 1f, 0.5f);
 
             _oldPhoto = new Sprite("Sprites\\oldPhoto", new Vector2(100, 10), 0f, 1f, 0.5f);
             _leash = new Sprite("Sprites\\leash", new Vector2(100, 10), 0f, 1f, 0.5f);
@@ -87,19 +87,19 @@ namespace StackingStones.Screens
             _foundLeash = false;
             List<HotSpot> hotSpots = new List<HotSpot>();
 
-            var oldPhoto = new HotSpot(new Rectangle(273, 263, 115, 60), "Old photo");
+            var oldPhoto = new HotSpot(new Rectangle(248, 216, 70, 60), "Old photo");
             oldPhoto.Clicked += OldPhoto_Clicked;
             hotSpots.Add(oldPhoto);
 
-            _door = new HotSpot(new Rectangle(968, 133, 279, 428), "Door");
+            _door = new HotSpot(new Rectangle(943, 0, 286, 516), "Door");
             _door.Clicked += Door_Clicked;
             hotSpots.Add(_door);
 
-            var window = new HotSpot(new Rectangle(521, 178, 174, 175), "Window");
+            var window = new HotSpot(new Rectangle(447, 87, 204, 159), "Window");
             window.Clicked += Window_Clicked;
             hotSpots.Add(window);
 
-            var cupboard = new HotSpot(new Rectangle(289, 363, 121, 104), "Cupboard");
+            var cupboard = new HotSpot(new Rectangle(212, 330, 246, 126), "Cupboard");
             cupboard.Clicked += Cupboard_Clicked;
             hotSpots.Add(cupboard);
             _findTheLeash = new ScreenInteraction(false, hotSpots);

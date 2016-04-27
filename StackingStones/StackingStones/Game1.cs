@@ -60,13 +60,13 @@ namespace StackingStones
             scene.Completed += Scene2_House_Completed;
             _currentScreen = scene;
 
-            //Scene2_House_Completed(null);
+            Scene2_House_Completed(null);
             //Scene3_WalkingDog_Completed(null);
             //Scene_StartHiddenAnimalsMiniGame(null);
             //Scene_StartSquirrelMiniGame(null);
             //Scene5a_SquirrelGame_Completed(null);
             //Scene6_StackedStones_Completed(null);
-            Scene7_WoodMaze_Completed(null);
+            //Scene7_WoodMaze_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
 
@@ -157,9 +157,6 @@ namespace StackingStones
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
-
             _currentScreen.Update(gameTime);
 
             base.Update(gameTime);
