@@ -38,45 +38,45 @@ namespace StackingStones.Screens
             _timesFollowedStones = 0;
             _timesNotFollowedStones = 0;
 
-            _background = new Sprite("Backgrounds\\Placeholders\\woodMaze", new Vector2(0, 0), 0f, 1f, 0.5f);
-            _stones.Add(new Sprite("MiniGames\\WoodMaze\\leftStones", new Vector2(87, 360), 0f, 1f, 0.5f));
-            _stones.Add(new Sprite("MiniGames\\WoodMaze\\rightStones", new Vector2(1080, 414), 0f, 1f, 0.5f));
-            _stones.Add(new Sprite("MiniGames\\WoodMaze\\topStones", new Vector2(721, 214), 0f, 1f, 0.5f));
+            _background = new Sprite("Backgrounds\\woodMaze", new Vector2(0, 0), 0f, 1f, 0.5f);
+            _stones.Add(new Sprite("MiniGames\\WoodMaze\\leftStones", new Vector2(263, 491), 0f, 1f, 0.5f));
+            _stones.Add(new Sprite("MiniGames\\WoodMaze\\rightStones", new Vector2(897, 479), 0f, 1f, 0.5f));
+            _stones.Add(new Sprite("MiniGames\\WoodMaze\\topStones", new Vector2(767, 301), 0f, 1f, 0.5f));
 
             _stones[0].Apply(new Fade(0f, 1f, 0.5f));
 
-            _bear = new Sprite("MiniGames\\WoodMaze\\bear", new Vector2(987, 263), 0f, 1f, 0.5f);
-            _wolf = new Sprite("MiniGames\\WoodMaze\\wolf", new Vector2(183, 233), 0f, 1f, 0.5f);
-            _trash = new Sprite("MiniGames\\WoodMaze\\trash", new Vector2(685, 360), 0f, 1f, 0.5f);
+            _bear = new Sprite("MiniGames\\WoodMaze\\bear", new Vector2(777, 325), 0f, 1f, 0.5f);
+            _wolf = new Sprite("MiniGames\\WoodMaze\\wolf", new Vector2(376, 203), 0f, 1f, 0.5f);
+            _trash = new Sprite("MiniGames\\WoodMaze\\trash", new Vector2(639, 466), 0f, 1f, 0.5f);
 
             var fade = new Fade(0f, 1f, 0.5f);
             fade.Completed += Fade_Completed;
             _background.Apply(fade);
 
             List<HotSpot> hotSpots = new List<HotSpot>();
-            var left = new HotSpot(new Rectangle(43, 583, 88, 84), "Left");
+            var left = new HotSpot(new Rectangle(158, 602, 94, 90), "Left");
             left.Clicked += Left_Clicked;
             hotSpots.Add(left);
 
-            var right = new HotSpot(new Rectangle(1134, 590, 82, 77), "Right");
+            var right = new HotSpot(new Rectangle(1063, 611, 109, 81), "Right");
             right.Clicked += Right_Clicked;
             hotSpots.Add(right);
 
-            var top = new HotSpot(new Rectangle(605, 273, 71, 71), "Forward");
+            var top = new HotSpot(new Rectangle(652, 301, 86, 92), "Forward");
             top.Clicked += Top_Clicked;
             hotSpots.Add(top);
 
-            _trashHotSpot = new HotSpot(new Rectangle(685, 360, 130, 117), "Litter");
+            _trashHotSpot = new HotSpot(new Rectangle(639, 466, 120, 102), "Litter");
             _trashHotSpot.Clicked += _trashHotSpot_Clicked;
             _trashHotSpot.Active = false;
             hotSpots.Add(_trashHotSpot);
 
-            _bearHotSpot = new HotSpot(new Rectangle(987, 263, 188, 129), "Bear");
+            _bearHotSpot = new HotSpot(new Rectangle(777, 325, 163, 176), "Bear");
             _bearHotSpot.Clicked += _bearHotSpot_Clicked;
             _bearHotSpot.Active = false;
             hotSpots.Add(_bearHotSpot);
 
-            _wolfHotSpot = new HotSpot(new Rectangle(183, 233, 151, 105), "Wolf");
+            _wolfHotSpot = new HotSpot(new Rectangle(376, 203, 138, 119), "Wolf");
             _wolfHotSpot.Clicked += _wolfHotSpot_Clicked;
             _wolfHotSpot.Active = false;
             hotSpots.Add(_wolfHotSpot);
