@@ -173,6 +173,7 @@ namespace StackingStones.Screens
             var fade = new Fade(1f, 0f, 0.5f);
             fade.Completed += FadeOutCompleted;
             _background.Apply(fade);
+            Music.FadeToVolume(0f, 0.5f);
         }
 
         private void FadeOutCompleted(IEffect sender)
