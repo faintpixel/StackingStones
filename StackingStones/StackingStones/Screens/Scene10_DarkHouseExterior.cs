@@ -14,7 +14,7 @@ namespace StackingStones.Screens
     {
         private Sprite _black;
         private Sprite _background;
-        public ScreenInteraction _explore;
+        private ScreenInteraction _explore;
 
         public event ScreenEvent Completed;
 

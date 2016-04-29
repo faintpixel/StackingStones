@@ -97,3 +97,9 @@
 /processorParam:Quality=Best
 /build:Music/563169_Ghostly-Ambience.mp3
 
+#begin SoundEffects/knock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/knock.wav
+

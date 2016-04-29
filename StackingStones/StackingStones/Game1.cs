@@ -60,15 +60,16 @@ namespace StackingStones
             scene.Completed += Scene2_House_Completed;
             _currentScreen = scene;
 
-            //Scene2_House_Completed(null);
-            //Scene3_WalkingDog_Completed(null);
-            //Scene_StartHiddenAnimalsMiniGame(null);
-            //Scene_StartSquirrelMiniGame(null);
-            //Scene5a_SquirrelGame_Completed(null);
-            //Scene6_StackedStones_Completed(null);
-            //Scene7_WoodMaze_Completed(null);
-            //Scene8_Gully_Completed(null);
-            //Scene9_DarkMaze_Completed(null);
+            Scene2_House_Completed(null);
+            Scene3_WalkingDog_Completed(null);
+            Scene_StartHiddenAnimalsMiniGame(null);
+            Scene_StartSquirrelMiniGame(null);
+            Scene5a_SquirrelGame_Completed(null);
+            Scene6_StackedStones_Completed(null);
+            Scene7_WoodMaze_Completed(null);
+            Scene8_Gully_Completed(null);
+            Scene9_DarkMaze_Completed(null);
+            Scene10_DarkHouseExterior_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
 
@@ -153,6 +154,13 @@ namespace StackingStones
         }
 
         private void Scene10_DarkHouseExterior_Completed(IScreen sender)
+        {
+            var scene = new Scene11_CallingSheriff();
+            scene.Completed += Scene11_CallingSheriff_Completed;
+            _currentScreen = scene;
+        }
+
+        private void Scene11_CallingSheriff_Completed(IScreen sender)
         {
             Console.WriteLine("Not implemented yet");
         }
