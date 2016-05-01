@@ -69,8 +69,8 @@ namespace StackingStones
             Scene7_WoodMaze_Completed(null);
             Scene8_Gully_Completed(null);
             Scene9_DarkMaze_Completed(null);
-            //Scene10_DarkHouseExterior_Completed(null);
-            //Scene11_CallingSheriff_Completed(null);
+            Scene10_DarkHouseExterior_Completed(null);
+            Scene11_CallingSheriff_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
 
