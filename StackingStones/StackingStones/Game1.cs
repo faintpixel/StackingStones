@@ -69,7 +69,8 @@ namespace StackingStones
             Scene7_WoodMaze_Completed(null);
             Scene8_Gully_Completed(null);
             Scene9_DarkMaze_Completed(null);
-            Scene10_DarkHouseExterior_Completed(null);
+            //Scene10_DarkHouseExterior_Completed(null);
+            //Scene11_CallingSheriff_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
 
@@ -161,6 +162,13 @@ namespace StackingStones
         }
 
         private void Scene11_CallingSheriff_Completed(IScreen sender)
+        {
+            var scene = new Scene12_TeenConfrontation();
+            scene.Completed += Scene12_TeenConfrontation_Completed;
+            _currentScreen = scene;
+        }
+
+        private void Scene12_TeenConfrontation_Completed(IScreen sender)
         {
             Console.WriteLine("Not implemented yet");
         }
