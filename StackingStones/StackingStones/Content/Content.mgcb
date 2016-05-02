@@ -121,3 +121,9 @@
 /processorParam:Quality=Best
 /build:SoundEffects/transformation.wav
 
+#begin SoundEffects/216089__richerlandtv__magic.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/216089__richerlandtv__magic.wav
+

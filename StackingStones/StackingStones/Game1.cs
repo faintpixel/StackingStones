@@ -71,6 +71,8 @@ namespace StackingStones
             Scene9_DarkMaze_Completed(null);
             Scene10_DarkHouseExterior_Completed(null);
             Scene11_CallingSheriff_Completed(null);
+            Scene12_TeenConfrontation_Completed(null);
+            Scene13_WrathOfTheSpirit_Completed(null);
 
             //_currentScreen = new TestScreenZoomToLocation();
 
@@ -170,7 +172,21 @@ namespace StackingStones
 
         private void Scene12_TeenConfrontation_Completed(IScreen sender)
         {
-            Console.WriteLine("Not implemented yet");
+            var scene = new Scene13_WrathOfTheSpirit();
+            scene.Completed += Scene13_WrathOfTheSpirit_Completed;
+            _currentScreen = scene;
+        }
+
+        private void Scene13_WrathOfTheSpirit_Completed(IScreen sender)
+        {
+            var scene = new Scene14_TheApology();
+            scene.Completed += Scene14_TheApology_Completed;
+            _currentScreen = scene;
+        }
+
+        private void Scene14_TheApology_Completed(IScreen sender)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
