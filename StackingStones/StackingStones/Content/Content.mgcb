@@ -109,3 +109,15 @@
 /processorParam:Quality=Best
 /build:Music/587419_StainedGlassampSpookySkele.mp3
 
+#begin SoundEffects/growl.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/growl.wav
+
+#begin SoundEffects/transformation.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:SoundEffects/transformation.wav
+

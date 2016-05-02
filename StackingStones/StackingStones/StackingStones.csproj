@@ -75,6 +75,8 @@
     <Compile Include="Screens\Scene10_DarkHouseExterior.cs" />
     <Compile Include="Screens\Scene11_CallingSheriff.cs" />
     <Compile Include="Screens\Scene12_TeenConfrontation.cs" />
+    <Compile Include="Screens\Scene13_WrathOfTheSpirit.cs" />
+    <Compile Include="Screens\Scene14_TheApology.cs" />
     <Compile Include="Screens\Scene2_House.cs" />
     <Compile Include="Screens\Scene3_WalkingDog.cs" />
     <Compile Include="Screens\Scene4_WalkingInWoods.cs" />
@@ -324,16 +326,28 @@
     <Content Include="Content\SoundEffects\34878__sruddi1__whine1.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\SoundEffects\growl.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\SoundEffects\knock.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\SoundEffects\transformation.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Sprites\bird.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\hoodedTeens.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\lady-angry.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\lady-smile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\lady-surprised.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\lady.png">
@@ -346,6 +360,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\puppersNoLeash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\puppersPreTransformed.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Sprites\puppersTransformed.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Sprites\regularCursor.png">
